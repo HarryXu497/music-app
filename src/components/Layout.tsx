@@ -14,16 +14,17 @@ const inter = Inter({
 export default function Layout(props: PropsWithChildren<{}>) {
 	return (
 		<>
-			<Image
-				className={styles.backgroundImage}
-				src={bg}
-				alt="Photo by Lucia Macedo on Unsplash"
-				fill
-				style={{
-					objectFit: 'cover'
-				}}
-				quality={75}>
-			</Image>
+			<div className={styles.backgroundImage}>
+				<Image
+					src={bg}
+					alt="Photo by Lucia Macedo on Unsplash"
+					fill
+					style={{
+						objectFit: 'cover'
+					}}
+					quality={75}>
+				</Image>
+			</div>
 
 			<main className={`${inter.className} ${styles.overlay}`}>
 				{ props.children }
