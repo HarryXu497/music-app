@@ -28,8 +28,15 @@
 	}
 };
 
+@mixin media-laptop-2 {
+	@include media(breakpoints.$breakpoint-laptop, breakpoints.$breakpoint-laptop-2) {
+		@content;
+	}
+};
+
+
 @mixin media-desktop {
-	@include media(breakpoints.$breakpoint-laptop, breakpoints.$breakpoint-desktop) {
+	@include media(breakpoints.$breakpoint-laptop-2, breakpoints.$breakpoint-desktop) {
 		@content;
 	}
 };

@@ -1,23 +1,34 @@
-import { SyntheticEvent } from "react"
+import { SyntheticEvent, useState } from "react"
 import Link from "next/link";
 import Image from 'next/image';
 
 import styles from "@/styles/InstrumentForm.module.scss";
 
 interface InstrumentFormProps {
-	onSubmit: (e: SyntheticEvent) => void;
+	onSubmit: (studentNumber: string, instrumentNumber: string) => void;
 }
 
 export default function InstrumentForm(props: InstrumentFormProps) {
+
+	const [studentNumber, setStudentNumber] = useState<string>("");
+	const [instrumentNumber, setInstrumentNumber] = useState<string>("");
+
+	const onSubmit = (e: SyntheticEvent) => {
+		e.preventDefault();
+
+		props.onSubmit(studentNumber, instrumentNumber);
+	}
+
 	return (
-		<form className={styles.instrumentForm}>
+		<form className={styles.instrumentForm} onSubmit={onSubmit}>
 			{/* RHHS Music Logo */}
 			<div className={styles.logo}>
 				<Image
 					src="/logo.jpg"
 					width={144}
 					height={144}
-					alt="RHHS Music Logo">
+					alt="RHHS Music Logo"
+					priority>
 				</Image>
 			</div>
 
@@ -27,11 +38,21 @@ export default function InstrumentForm(props: InstrumentFormProps) {
 				<div className={styles.formControls}>
 					<div className={styles.formControl}>
 						<label htmlFor="student-number">Student Number</label>
-						<input type="text" name="student-number" id="student-number"/>
+						<input
+							type="text"
+							name="student-number"
+							id="student-number"
+							value={studentNumber}
+							onChange={(e) => setStudentNumber(e.currentTarget.value)}/>
 					</div>
 					<div className={styles.formControl}>
 						<label htmlFor="instrument-number">Instrument Number</label>
-						<input type="text" name="instrument-number" id="instrument-number"/>
+						<input
+							type="text"
+							name="instrument-number"
+							id="instrument-number"
+							value={instrumentNumber}
+							onChange={(e) => setInstrumentNumber(e.currentTarget.value)}/>
 					</div>
 				</div>
 
