@@ -1,0 +1,90 @@
+@use "./sass/exports.scss" as exports;
+
+.formBody {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 9.5rem
+	
+}
+
+.instrumentForm {
+	position: absolute;
+
+	display: flex;
+	flex-direction: column;
+
+	background-color: white;
+	padding: 1.25rem 4rem;
+
+	inset: 10rem 25rem;	
+
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+}
+
+.formControls {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+
+	margin-top: 0.25rem; 
+}
+
+.formControl {
+	$font-size: 1.5rem;
+
+	display: flex;
+	flex-direction: column;
+	gap: 0.125rem;
+
+	input {
+		font-size: $font-size;
+		font-weight: 100;
+	}
+
+	label {
+		font-size: $font-size;
+		font-weight: bold;
+	}
+}
+
+.buttonGroup {
+	$font-size: 1.5rem;
+
+	flex-grow: 1;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	.catalogueButton {
+		font-size: $font-size;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.submitButton {
+		@include exports.button;
+
+		font-weight: bold;
+		font-size: $font-size;
+	}
+}
+
+.logo {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+@include exports.media-laptop {
+	.instrumentForm {
+		inset: 10rem 20rem;	
+	}
+}
+
+@include exports.media-tablet {
+	.instrumentForm {
+		background-color: red;
+	}
+}

@@ -1,0 +1,6 @@
+@use "./sass/exports.scss" as exports;
+
+:root {
+	height: 100%;
+	color: exports.$color-accent-800;
+}

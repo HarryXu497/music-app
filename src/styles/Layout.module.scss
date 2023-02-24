@@ -1,0 +1,15 @@
+.backgroundImage {
+	position: absolute;
+	z-index: -1;
+}
+
+.overlay {
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		inset: 0;
+		background: rgba(0,0,0,0.8);
+		opacity: .6; 
+	}
+}
