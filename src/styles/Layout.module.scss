@@ -1,9 +1,12 @@
 .backgroundImage {
+	inset: 0;
 	position: absolute;
 	z-index: -1;
 }
 
 .overlay {
+	position: block;
+
 	&:before {
 		content: '';
 		display: block;
