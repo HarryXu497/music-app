@@ -16,7 +16,7 @@
 	background-color: white;
 	padding: 1.25rem 4rem;
 
-	inset: 10rem 25rem;	
+	width: clamp(20rem, 60%, 50rem);
 
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
 }
@@ -30,25 +30,32 @@
 }
 
 .formControl {
-	$font-size: 1.5rem;
+	--font-size: 1.5rem;
 
 	display: flex;
 	flex-direction: column;
 	gap: 0.125rem;
 
 	input {
-		font-size: $font-size;
+		font-size: var(--font-size);
 		font-weight: 100;
+
+		border: 1.25px solid exports.$color-accent-600;
+		border-radius: 2px;
+
+		&:focus {
+			outline: none;
+		}
 	}
 
 	label {
-		font-size: $font-size;
+		font-size: var(--font-size);
 		font-weight: bold;
 	}
 }
 
 .buttonGroup {
-	$font-size: 1.5rem;
+	--font-size: 1.5rem;
 
 	flex-grow: 1;
 	display: flex;
@@ -56,7 +63,7 @@
 	justify-content: space-between;
 
 	.catalogueButton {
-		font-size: $font-size;
+		font-size: var(--font-size);
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -66,7 +73,7 @@
 		@include exports.button;
 
 		font-weight: bold;
-		font-size: $font-size;
+		font-size: var(--font-size);
 	}
 }
 
@@ -76,24 +83,27 @@
 	justify-content: center;
 }
 
-@include exports.media-laptop-2 {
-	.formBody {
-		gap: 4rem;
-	}
-
-	.instrumentForm {
-		inset: 5rem 10rem;	
-	}
-}
-
-@include exports.media-laptop {
-	.instrumentForm {
-		inset: 10rem 20rem;	
-	}
-}
 
 @include exports.media-tablet {
-	.instrumentForm {
-		background-color: red;
+	.buttonGroup {
+		--font-size: 1.25rem;
+	}
+
+	.formControl {
+		--font-size: 1.25rem;
+
+		gap: 0.25rem;
+	}
+}
+
+@include exports.media-mobile {
+	.buttonGroup {
+		--font-size: 1rem;
+	}
+
+	.formControl {
+		--font-size: 1rem;
+
+		gap: 0.5rem;
 	}
 }
