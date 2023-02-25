@@ -2,11 +2,6 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import InstrumentForm from '../components/InstrumentForm';
 
-const inter = Inter({
-	subsets: ['latin'],
-	weight: ["100", "300", "400"]
-})
-
 export default function Home() {
 
 	const onSubmit = (studentNumber: string, instrumentNumber: string) => {
