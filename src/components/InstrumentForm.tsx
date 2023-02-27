@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from 'next/image';
 
 import styles from "@/styles/InstrumentForm.module.scss";
+import ErrorMessage from "./ErrorMessage";
 
 interface InstrumentFormProps {
 	onSubmit: (studentNumber: string, instrumentNumber: string) => void;
@@ -57,6 +58,10 @@ export default function InstrumentForm(props: InstrumentFormProps) {
 							id="instrument-number"
 							value={instrumentNumber}
 							onChange={(e) => setInstrumentNumber(e.currentTarget.value)}/>
+					</div>
+
+					<div className={styles.error}>
+						<ErrorMessage message="Sorry, this instrument is already checked out" onClose={() => {}}/>
 					</div>
 				</div>
 

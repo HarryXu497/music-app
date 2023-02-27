@@ -22,6 +22,8 @@
 }
 
 .formControls {
+	position: relative;
+
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
@@ -75,6 +77,12 @@
 		font-weight: bold;
 		font-size: var(--font-size);
 	}
+}
+
+.error {
+	position: absolute;
+	inset: 0;
+	top: 12rem
 }
 
 .logo {
