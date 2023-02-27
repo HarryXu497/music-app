@@ -1,8 +1,11 @@
-import Head from 'next/head'
-import { Inter } from 'next/font/google'
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import InstrumentForm from '../components/InstrumentForm';
 
 export default function Home() {
+	
+	const router = useRouter();
 
 	const onSubmit = (studentNumber: string, instrumentNumber: string) => {
 		console.log(studentNumber, instrumentNumber)
@@ -18,7 +21,7 @@ export default function Home() {
 			</Head>
 
 			{/* Instrument Form */}
-			<InstrumentForm onSubmit={onSubmit}/>
+			<InstrumentForm onSubmit={onSubmit} defaultInputs={{ serialNumber: router.query.serialNumber as string }}/>
 		</>
 	)
 }

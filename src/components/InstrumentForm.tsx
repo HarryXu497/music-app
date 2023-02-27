@@ -6,12 +6,16 @@ import styles from "@/styles/InstrumentForm.module.scss";
 
 interface InstrumentFormProps {
 	onSubmit: (studentNumber: string, instrumentNumber: string) => void;
+	defaultInputs?: {
+		studentNumber?: string;
+		serialNumber?: string;
+	}
 }
 
 export default function InstrumentForm(props: InstrumentFormProps) {
 
-	const [studentNumber, setStudentNumber] = useState<string>("");
-	const [instrumentNumber, setInstrumentNumber] = useState<string>("");
+	const [studentNumber, setStudentNumber] = useState<string>(props.defaultInputs?.studentNumber || "");
+	const [instrumentNumber, setInstrumentNumber] = useState<string>(props.defaultInputs?.serialNumber || "");
 
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();

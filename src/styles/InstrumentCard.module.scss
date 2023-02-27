@@ -1,0 +1,29 @@
+@use "./sass/exports.scss" as exports;
+
+.instrumentCard {
+	border: 1px solid black;
+	border-radius: 3px;
+
+	min-height: 12rem;
+}
+
+.header {
+	// Color
+	background-color: exports.$color-secondary-300;
+	color: exports.$color-primary-200;
+
+	// Display
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	
+	// Font
+	font-size: 1.25rem;
+	
+	
+	padding: 0.25rem 0.5rem;
+
+	> h2 {
+		font-weight: bold;
+	}
+}

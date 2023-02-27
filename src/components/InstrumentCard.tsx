@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import Instrument from '../database/instrument.model';
+import styles from "@/styles/InstrumentCard.module.scss";
 
 interface InstrumentCardProps {
 	instrument: Instrument;
@@ -7,9 +9,21 @@ interface InstrumentCardProps {
 
 export default function InstrumentCard({ instrument }: InstrumentCardProps) {
 	return (
-		<div>
-			<h1>{ instrument.name } No.{ instrument.instrumentNumber }</h1>
-			<h2>{ instrument.serialNumber }</h2>
-		</div>
+		<Link href={{
+				pathname: "/",
+				query: { serialNumber: instrument.serialNumber }
+			}} 
+			style={{ color: 'inherit', textDecoration: 'inherit'}}
+		>
+			<div className={styles.instrumentCard}>
+				<div className={styles.header}>
+					<h2>{ instrument.name.length > 9 ? instrument.name.substring(0, 10) : instrument.name } No.{ instrument.instrumentNumber }</h2>
+					<p>{ instrument.serialNumber }</p>
+				</div>
+				<div>
+					OTHER INFO
+				</div>
+			</div>
+		</Link>
 	)
 }

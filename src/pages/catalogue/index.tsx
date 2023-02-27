@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import InstrumentDatabase from '@/database/database';
 import Instrument from '../../database/instrument.model';
+import InstrumentCatalogue from '../../components/InstrumentCatalogue';
 
 interface CatalogueProps {
 	instruments: Instrument[];
@@ -20,11 +21,6 @@ export const getServerSideProps: GetServerSideProps<CatalogueProps> = async (con
 
 
 export default function Catalogue({ instruments }: CatalogueProps) {
-
-	const onSubmit = (studentNumber: string, instrumentNumber: string) => {
-		console.log(studentNumber, instrumentNumber)
-	}
-
 	return (
 		<>
 			<Head>
@@ -32,8 +28,7 @@ export default function Catalogue({ instruments }: CatalogueProps) {
 			</Head>
 
 			{/* Catalogue */}
-
-			
+			<InstrumentCatalogue instruments={instruments}/>
 		</>
 	)
 }
