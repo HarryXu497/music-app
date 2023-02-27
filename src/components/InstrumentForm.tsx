@@ -60,9 +60,11 @@ export default function InstrumentForm(props: InstrumentFormProps) {
 							onChange={(e) => setInstrumentNumber(e.currentTarget.value)}/>
 					</div>
 
-					<div className={styles.error}>
-						<ErrorMessage message="Sorry, this instrument is already checked out" onClose={() => {}}/>
-					</div>
+					{ false &&
+						<div className={styles.error}>
+							<ErrorMessage message="Sorry, this instrument is already checked out" onClose={() => {}}/>
+						</div>
+					}
 				</div>
 
 				{/* Buttons */}
