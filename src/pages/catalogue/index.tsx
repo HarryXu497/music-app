@@ -1,29 +1,43 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import PocketBase from 'pocketbase';
+import PocketBase, { ListResult } from 'pocketbase';
 import InstrumentDatabase from '@/database/database';
 import Instrument from '../../database/instrument.model';
 import InstrumentCatalogue from '../../components/InstrumentCatalogue';
 
 interface CatalogueProps {
-	instruments: Instrument[];
+	instruments?: Instrument[];
+	error?: unknown;
 }
 
 const pb = new PocketBase('http://127.0.0.1:8090');
 
 export const getServerSideProps: GetServerSideProps<CatalogueProps> = async (context) => {
+
+	const instrumentsCollection = pb.collection("instruments");
 	
-	const instruments = await pb.collection("instruments").getList<Instrument>(1, 20)
+	let instruments: ListResult<Instrument>;
+
+	// try {	
+	instruments = await instrumentsCollection.getList<Instrument>(1, 20);
+	// } catch (error: any) {
+		// return {
+		// }
+	// }
 
 	return {
 		props: {
-			instruments: instruments.items.map(o => ({ ...o }))
+			instruments: instruments.items.map(o => ({
+				...o,
+				image: o.image ? pb.getFileUrl(o, o.image) : o.image,
+			})) as Instrument[]
 		}
 	}
 }
 
 
-export default function Catalogue({ instruments }: CatalogueProps) {
+export default function Catalogue({ instruments, error }: CatalogueProps) {
+
 	return (
 		<>
 			<Head>
@@ -31,7 +45,7 @@ export default function Catalogue({ instruments }: CatalogueProps) {
 			</Head>
 
 			{/* Catalogue */}
-			<InstrumentCatalogue instruments={instruments}/>
+			{ instruments && <InstrumentCatalogue instruments={instruments}/> }
 		</>
 	)
 }

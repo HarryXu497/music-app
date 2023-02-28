@@ -23,7 +23,7 @@ export default function InstrumentCard({ instrument }: InstrumentCardProps) {
 				</div>
 				<div className={styles.imageContainer}>
 					{ instrument.image && <Image
-						src={`http://127.0.0.1:8090/api/files/0vrhgl6k26eywir/24bcb1hpp48xyc3/${instrument.image}`}
+						src={instrument.image}
 						alt={`Image of ${instrument.name}`}
 						fill
 						style={{
