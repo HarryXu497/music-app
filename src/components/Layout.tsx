@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Layout.module.scss'
 import bg from "../../public/bg.jpg"
 import { PropsWithChildren } from 'react'
+import ErrorBoundary from './ErrorBoundary'
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -27,7 +28,11 @@ export default function Layout(props: PropsWithChildren<{}>) {
 				</Image>
 			</div>
 
-			<main className={`${styles.main} ${inter.className}`}>{ props.children }</main>
+			<main className={`${styles.main} ${inter.className}`}>
+				<ErrorBoundary>
+					{ props.children }
+				</ErrorBoundary>
+			</main>
 		</>
 	)
 }
