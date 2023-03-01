@@ -1,13 +1,12 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import PocketBase, { ListResult } from 'pocketbase';
-import InstrumentDatabase from '@/database/database';
+import PocketBase, { ClientResponseError, ListResult } from 'pocketbase';
 import Instrument from '../../database/instrument.model';
 import InstrumentCatalogue from '../../components/InstrumentCatalogue';
 
 interface CatalogueProps {
 	instruments?: Instrument[];
-	error?: unknown;
+	error?: ClientResponseError;
 }
 
 const pb = new PocketBase('http://127.0.0.1:8090');
@@ -18,12 +17,22 @@ export const getServerSideProps: GetServerSideProps<CatalogueProps> = async (con
 	
 	let instruments: ListResult<Instrument>;
 
-	// try {	
-	instruments = await instrumentsCollection.getList<Instrument>(1, 20);
-	// } catch (error: any) {
-		// return {
-		// }
-	// }
+	try {	
+		instruments = await instrumentsCollection.getList<Instrument>(1, 20);
+	} catch (error: any) {
+		if (error instanceof ClientResponseError) {
+			return {
+				props: {
+					error: { ...error.originalError }
+				}
+			}
+		}
+		return {
+			props: {
+				error: true
+			}
+		}
+	}
 
 	return {
 		props: {
@@ -45,7 +54,7 @@ export default function Catalogue({ instruments, error }: CatalogueProps) {
 			</Head>
 
 			{/* Catalogue */}
-			{ instruments && <InstrumentCatalogue instruments={instruments}/> }
+			<InstrumentCatalogue instruments={instruments} error={error}/> 
 		</>
 	)
 }

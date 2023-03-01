@@ -2,13 +2,22 @@ import Instrument from "@/database/instrument.model";
 import InstrumentCard from "./InstrumentCard";
 import styles from "@/styles/InstrumentCatalogue.module.scss";
 import Image from "next/image";
+import { ClientResponseError } from "pocketbase";
 
 
 interface InstrumentCatalogueProps {
-	instruments: Instrument[];
+	instruments?: Instrument[];
+	error?: ClientResponseError;
 }
 
-export default function InstrumentCatalogue({ instruments }: InstrumentCatalogueProps) {
+const Error = () => (
+	<div className={styles.error}>
+		<p>Uh oh... something went wrong</p>
+	</div>
+)
+
+export default function InstrumentCatalogue({ instruments, error }: InstrumentCatalogueProps) {
+
 	return (
 		<div className={styles.instrumentCatalogue}>
 			{/* RHHS Music Logo */}
@@ -27,11 +36,12 @@ export default function InstrumentCatalogue({ instruments }: InstrumentCatalogue
 					<label htmlFor="search">Search</label>
 					<input type="text" id="search"/>
 				</div>
-				<div className={styles.instrumentGrid}>
+				{ instruments && <div className={styles.instrumentGrid}>
 					{ instruments.map(instrument => <InstrumentCard
 						key={instrument.serialNumber}
 						instrument={instrument}/>)}
-				</div>
+				</div>}
+				{ error && <Error/> }
 			</div>
 		</div>
 	)
