@@ -2,13 +2,20 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import InstrumentForm from '../components/InstrumentForm';
+import PocketBase from 'pocketbase';
+
+const pb = new PocketBase(process.env.DB_URL)
 
 export default function Home() {
 	
 	const router = useRouter();
 
 	const onSubmit = (studentNumber: string, instrumentNumber: string) => {
-		console.log(studentNumber, instrumentNumber)
+		console.log(studentNumber, instrumentNumber);
+
+		const email = `${studentNumber}@gapps.yrdsb.ca`;
+
+
 	}
 
 	return (

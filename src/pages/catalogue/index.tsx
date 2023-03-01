@@ -9,7 +9,7 @@ interface CatalogueProps {
 	error?: ClientResponseError;
 }
 
-const pb = new PocketBase('http://127.0.0.1:8090');
+const pb = new PocketBase(process.env.DB_URL);
 
 export const getServerSideProps: GetServerSideProps<CatalogueProps> = async (context) => {
 
