@@ -46,7 +46,6 @@ export const getServerSideProps: GetServerSideProps<CatalogueProps> = async (con
 
 
 export default function Catalogue({ instruments, error }: CatalogueProps) {
-
 	return (
 		<>
 			<Head>

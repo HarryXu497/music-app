@@ -1,6 +1,4 @@
-import { Record } from "pocketbase";
-
-export default interface Instrument extends Record {
+export default interface Instrument {
 	name: string
 	instrumentNumber: number
 	serialNumber: string;
