@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps<CatalogueProps> = async (con
 		props: {
 			instruments: instruments.items.map(o => ({
 				...o,
-				image: o.image ? pb.getFileUrl(o, o.image) : o.image,
+				image: o.image ? pb.getFileUrl(o as any, o.image) : o.image,
 			})) as Instrument[]
 		}
 	}
